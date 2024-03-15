@@ -1,0 +1,46 @@
+# Define GraphQL types
+type User {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+type Location {
+  id: ID!
+  name: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+type Weather {
+  temperature: Float!
+  description: String!
+}
+
+# Define input types for mutations
+input LocationInput {
+  name: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+# Define queries for fetching data
+type Query {
+  user(id: ID!): User
+  allUsers: [User]
+  location(id: ID!): Location
+  allLocations: [Location]
+  currentWeather(latitude: Float!, longitude: Float!): Weather
+}
+
+# Define mutations for creating and updating data
+type Mutation {
+  createUser(username: String!, email: String!): User
+  saveLocation(input: LocationInput!): Location
+}
+
+# Define the schema
+schema {
+  query: Query
+  mutation: Mutation
+}
